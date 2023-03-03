@@ -1,7 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+// eslint-disable-next-line
 import { app, db } from "../utils/firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  setPersistence,
+} from "firebase/auth";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -10,6 +15,10 @@ const Login = () => {
   });
 
   const auth = getAuth();
+
+  useEffect(() => {
+    setPersistence(auth, localStorage);
+  }, [auth]);
 
   function handleChange(e) {
     const name = e.target.name;
@@ -20,7 +29,7 @@ const Login = () => {
   function handleSubmit(e) {
     e.preventDefault();
     signInWithEmailAndPassword(auth, loginData.email, loginData.password).then(
-      (response) => console.log(response)
+      (response) => localStorage.setItem("user", JSON.stringify(response.user))
     );
   }
 
@@ -33,7 +42,7 @@ const Login = () => {
       <button type="submit">Log in</button>
       <button>Guest Login</button>
       <p>
-        Don't have an account? <a href="./Register.js">Register</a>
+        Don't have an account? <Link to="/register">Register</Link>
       </p>
     </form>
   );

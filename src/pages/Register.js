@@ -1,10 +1,16 @@
 import React from "react";
 import { useState } from "react";
+// eslint-disable-next-line
 import { app, db } from "../utils/firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 const Register = () => {
-  const [RegisterData, setRegisterData] = useState({
+  const [registerData, setRegisterData] = useState({
     email: "",
     name: "",
     password: "",
@@ -15,17 +21,28 @@ const Register = () => {
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setRegisterData({ ...RegisterData, [name]: value });
+    setRegisterData({ ...registerData, [name]: value });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     createUserWithEmailAndPassword(
       auth,
-      RegisterData.email,
-      RegisterData.password
-    );
+      registerData.email,
+      registerData.password
+    ).then((userCredential) => {
+      const user = userCredential.user;
+      setDoc(doc(db, "users", user.uid), {
+        name: registerData.name,
+        location: null,
+        hangoutWith: [],
+        hangoutType: [],
+        hangoutRange: null,
+      });
+      return updateProfile(user, { displayName: registerData.name });
+    });
   }
+
   return (
     <form>
       <label>E-mail:</label>
