@@ -8,6 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -52,6 +53,9 @@ const Register = () => {
       <label>Password:</label>
       <input type="password" name="password" onChange={handleChange} />
       <button onClick={handleSubmit}>Register</button>
+      <p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </form>
   );
 };

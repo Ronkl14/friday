@@ -1,19 +1,22 @@
-import React from "react";
-import { getAuth, signOut } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const Navbar = () => {
+  //   const [displayName, setDisplayName] = useState("");
   const auth = getAuth();
+
+  //   useEffect(() => {
+  //     setDisplayName(JSON.parse(localStorage.getItem(user)).displayName);
+  //   }, []);
+
   function handleLogout() {
     signOut(auth);
   }
 
-  const displayName = auth.currentUser.displayName;
-  console.log(displayName);
-
   return (
     <div>
       <button onClick={handleLogout}>Logout</button>
-      <p>{displayName}</p>
+      {/* <p>{displayName}</p> */}
     </div>
   );
 };

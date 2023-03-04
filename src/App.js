@@ -1,15 +1,19 @@
 import "./App.css";
 import {
   Login,
-  // MainPage,
+  MainPage,
   Preferences,
-  // Register,
-  // UserPanel,
-  ErrorPage,
   Register,
+  UserPanel,
+  ErrorPage,
+  LandingPage,
 } from "./pages";
 import { MainNavigation } from "./components";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -32,9 +36,25 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: user ? <Preferences /> : <Register />,
-      errorElement: <ErrorPage />,
-      children: [],
+      element: <MainNavigation user={user} />,
+      children: [
+        { path: "/", element: <LandingPage /> },
+        { path: "/login", element: <Login /> },
+        { path: "/register", element: <Register /> },
+        {
+          path: "/preferences",
+          element: user ? <Preferences /> : <Navigate to="/login" />,
+        },
+        {
+          path: "/main",
+          element: user ? <MainPage /> : <Navigate to="/login" />,
+        },
+        {
+          path: "/user-panel",
+          element: user ? <UserPanel /> : <Navigate to="/login" />,
+        },
+        { path: "*", element: <ErrorPage /> },
+      ],
     },
   ]);
 
