@@ -21,18 +21,6 @@ function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const auth = getAuth();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-        localStorage.setItem("user", JSON.stringify(user));
-      } else {
-        setUser(null);
-        localStorage.removeItem("user");
-      }
-    });
-  }, [auth]);
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -57,6 +45,19 @@ function App() {
       ],
     },
   ]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+        router.navigate("/preferences");
+      } else {
+        setUser(null);
+        localStorage.removeItem("user");
+      }
+    });
+  }, [auth]);
 
   return <RouterProvider router={router} />;
 }

@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Preferences = () => {
+  const navigate = useNavigate();
+
   const [userPreferences, setUserPreferences] = useState({
     hangoutRange: null,
     hangoutType: [],
@@ -19,11 +22,32 @@ const Preferences = () => {
     (async () => {
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
-      setUserPreferences({ ...userPreferences });
+      if (
+        docData.hangoutRange &&
+        docData.hangoutType.length !== 0 &&
+        docData.hangoutWith.length !== 0 &&
+        docData.location
+      ) {
+        navigate("/main");
+      }
     })();
   }, []);
 
-  return <div>Preferences</div>;
+  return (
+    <div>
+      <p>What is your location?</p>
+      <input name="location" type="text" />
+      <p>Who do you usually hang out with?</p>
+      <div>
+        <input type="checkbox" id="myself" name="hangout-with" />
+        <label htmlFor="myself">By myself</label>
+      </div>
+      <div>
+        <input type="checkbox" id="friends" name="hangout-with" />
+        <label htmlFor="friends">With my friends</label>
+      </div>
+    </div>
+  );
 };
 
 export default Preferences;

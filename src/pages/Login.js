@@ -33,18 +33,24 @@ const Login = () => {
     );
   }
 
+  function guestLogin() {
+    alert("this is for guests");
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>E-mail:</label>
-      <input type="email" name="email" onChange={handleChange} />
-      <label>Password:</label>
-      <input type="password" name="password" onChange={handleChange} />
-      <button type="submit">Log in</button>
-      <button>Guest Login</button>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>E-mail:</label>
+        <input type="email" name="email" onChange={handleChange} />
+        <label>Password:</label>
+        <input type="password" name="password" onChange={handleChange} />
+        <button type="submit">Log in</button>
+      </form>
+      <button onClick={guestLogin}>Guest Login</button>
       <p>
         Don't have an account? <Link to="/register">Register</Link>
       </p>
-    </form>
+    </div>
   );
 };
 
