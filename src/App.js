@@ -2,7 +2,7 @@ import "./App.css";
 import {
   Login,
   // MainPage,
-  // Preferences,
+  Preferences,
   // Register,
   // UserPanel,
   ErrorPage,
@@ -32,7 +32,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: user ? <MainNavigation /> : <Register />,
+      element: user ? <Preferences /> : <Register />,
       errorElement: <ErrorPage />,
       children: [],
     },
