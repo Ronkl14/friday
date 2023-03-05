@@ -24,9 +24,9 @@ const Preferences = () => {
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
       if (
-        docData.hangoutRange &&
-        docData.hangoutType.length !== 0 &&
-        docData.hangoutWith.length !== 0 &&
+        docData.hangoutRange ||
+        docData.hangoutType.length !== 0 ||
+        docData.hangoutWith.length !== 0 ||
         docData.location
       ) {
         navigate("/main");
