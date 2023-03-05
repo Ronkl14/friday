@@ -66,7 +66,7 @@ function App() {
         localStorage.removeItem("user");
       }
     });
-  }, [auth]);
+  }, [auth, router]);
 
   return <RouterProvider router={router} />;
 }
