@@ -9,11 +9,16 @@ import { AddressInput } from "../components";
 const Preferences = () => {
   const navigate = useNavigate();
 
+  const [address, setAddress] = useState("");
+
   const [userPreferences, setUserPreferences] = useState({
     hangoutRange: null,
     hangoutType: [],
     hangoutWith: [],
+    priceRange: null,
     location: null,
+    longitude: 0,
+    latitude: 0,
   });
 
   const auth = getAuth();
@@ -41,8 +46,13 @@ const Preferences = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    setUserPreferences({ ...userPreferences, location: address });
+  }, [address]);
+
   function savePreferences(e) {
     e.preventDefault();
+    console.log(userPreferences);
   }
 
   function changeHandler(e) {
@@ -67,8 +77,7 @@ const Preferences = () => {
         return array;
       case "remove":
         const index = array.indexOf(value);
-        const newArr = array.splice(index, 1);
-        console.log(array);
+        array.splice(index, 1);
         return array;
       default:
         return;
@@ -77,13 +86,8 @@ const Preferences = () => {
 
   return (
     <form onSubmit={savePreferences}>
-      <h2>
-        {userPreferences.hangoutWith.map((a) => (
-          <p>{a}</p>
-        ))}
-      </h2>
       <p>What is your location?</p>
-      <AddressInput />
+      <AddressInput setAddress={setAddress} />
       <p>Set the range from your location</p>
       <input
         type="number"
@@ -114,45 +118,105 @@ const Preferences = () => {
         <label htmlFor="friends">With my friends</label>
       </div>
       <div>
-        <input type="checkbox" id="partner" name="hangoutWith" />
+        <input
+          type="checkbox"
+          id="partner"
+          name="hangoutWith"
+          value="partner"
+          onChange={changeHandler}
+        />
         <label htmlFor="partner">Girlfriend/Boyfriend</label>
       </div>
       <div>
-        <input type="checkbox" id="family" name="hangoutWith" />
+        <input
+          type="checkbox"
+          id="family"
+          name="hangoutWith"
+          value="family"
+          onChange={changeHandler}
+        />
         <label htmlFor="family">Family</label>
       </div>
       <p>What is your favorite hangout type?</p>
       <div>
-        <input type="checkbox" id="food" name="hangout-type" />
+        <input
+          type="checkbox"
+          id="food"
+          name="hangoutType"
+          value="food"
+          onChange={changeHandler}
+        />
         <label htmlFor="food">Food</label>
       </div>
       <div>
-        <input type="checkbox" id="club" name="hangout-type" />
+        <input
+          type="checkbox"
+          id="club"
+          name="hangoutType"
+          value="club"
+          onChange={changeHandler}
+        />
         <label htmlFor="club">Clubbing/Parties</label>
       </div>
       <div>
-        <input type="checkbox" id="romantic" name="hangout-type" />
+        <input
+          type="checkbox"
+          id="romantic"
+          name="hangoutType"
+          value="romantic"
+          onChange={changeHandler}
+        />
         <label htmlFor="romantic">Romantic</label>
       </div>
       <div>
-        <input type="checkbox" id="culture" name="hangout-type" />
+        <input
+          type="checkbox"
+          id="culture"
+          name="hangoutType"
+          value="culture"
+          onChange={changeHandler}
+        />
         <label htmlFor="culture">Culture</label>
       </div>
       <div>
-        <input type="checkbox" id="chill" name="hangout-type" />
+        <input
+          type="checkbox"
+          id="chill"
+          name="hangoutType"
+          value="chill"
+          onChange={changeHandler}
+        />
         <label htmlFor="chill">Chill</label>
       </div>
       <p>Select price range:</p>
       <div>
-        <input type="radio" id="cheap" name="price-range" />
+        <input
+          type="radio"
+          id="cheap"
+          name="priceRange"
+          value="cheap"
+          onChange={changeHandler}
+        />
         <label htmlFor="cheap">Under 100 NIS</label>
       </div>
       <div>
-        <input type="radio" id="medium" name="price-range" />
+        <input
+          type="radio"
+          id="medium"
+          name="priceRange"
+          value="medium"
+          onChange={changeHandler}
+        />
         <label htmlFor="medium">100-200 NIS</label>
       </div>
       <div>
-        <input type="radio" id="expensive" name="price-range" />
+        <input
+          type="radio"
+          id="expensive"
+          name="priceRange"
+          value="expensive"
+          onChange={changeHandler}
+        />
         <label htmlFor="expensive">200+ NIS</label>
       </div>
       <button type="submit">Save my preferences</button>

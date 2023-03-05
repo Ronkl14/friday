@@ -11,7 +11,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 
-const AddressInput = () => {
+const AddressInput = ({ setAddress }) => {
   const {
     ready,
     value,
@@ -26,6 +26,7 @@ const AddressInput = () => {
 
   async function handleSelect(address) {
     setValue(address, false);
+    setAddress(address);
     clearSuggestions();
 
     const results = await getGeocode({ address });

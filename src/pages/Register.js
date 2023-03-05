@@ -40,6 +40,7 @@ const Register = () => {
         hangoutWith: [],
         hangoutType: [],
         hangoutRange: null,
+        priceRange: null,
       });
       return updateProfile(user, { displayName: registerData.name });
     });
