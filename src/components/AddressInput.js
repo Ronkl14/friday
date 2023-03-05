@@ -6,20 +6,12 @@ import {
   ComboboxPopover,
 } from "@reach/combobox";
 import React from "react";
-import { useLoadScript } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
 
-const libraries = ["places"];
 const AddressInput = () => {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: libraries,
-  });
-  console.log(isLoaded);
-
   const {
     ready,
     value,
@@ -38,6 +30,7 @@ const AddressInput = () => {
 
     const results = await getGeocode({ address });
     const { lat, lng } = getLatLng(results[0]);
+    console.log("geocode:", lat, lng);
   }
 
   return (
@@ -45,11 +38,11 @@ const AddressInput = () => {
       <ComboboxInput
         value={value}
         onChange={addressInputHandler}
-        disabled={!ready || !isLoaded}
+        disabled={!ready}
         placeholder="enter your location"
       />
       <ComboboxPopover>
-        <ComboboxList>
+        <ComboboxList style={{ backgroundColor: "white" }}>
           {status === "OK" &&
             data.map(({ place_id, description }) => (
               <ComboboxOption key={place_id} value={description} />

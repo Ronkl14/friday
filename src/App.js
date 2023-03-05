@@ -16,10 +16,19 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useLoadScript } from "@react-google-maps/api";
+
+const libraries = ["places"];
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const auth = getAuth();
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: libraries,
+  });
+  console.log("google maps api loaded:", isLoaded);
 
   const router = createBrowserRouter([
     {
