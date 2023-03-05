@@ -12,12 +12,14 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 
+const libraries = ["places"];
 const AddressInput = () => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ["places"],
+    libraries: libraries,
   });
   console.log(isLoaded);
+
   const {
     ready,
     value,
@@ -36,7 +38,6 @@ const AddressInput = () => {
 
     const results = await getGeocode({ address });
     const { lat, lng } = getLatLng(results[0]);
-    console.log(lat, lng);
   }
 
   return (
@@ -44,7 +45,7 @@ const AddressInput = () => {
       <ComboboxInput
         value={value}
         onChange={addressInputHandler}
-        disabled={!ready && !isLoaded}
+        disabled={!ready || !isLoaded}
         placeholder="enter your location"
       />
       <ComboboxPopover>
