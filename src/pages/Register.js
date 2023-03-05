@@ -7,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, GeoPoint } from "firebase/firestore";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -36,6 +36,7 @@ const Register = () => {
       setDoc(doc(db, "users", user.uid), {
         name: registerData.name,
         location: null,
+        geoPoint: new GeoPoint(0, 0),
         hangoutWith: [],
         hangoutType: [],
         hangoutRange: null,
