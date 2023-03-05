@@ -44,10 +44,13 @@ const Preferences = () => {
         navigate("/main");
       }
     })();
-  }, []);
+  }, [docRef, navigate]);
 
   useEffect(() => {
-    setUserPreferences({ ...userPreferences, location: address });
+    setUserPreferences((prevPreferences) => ({
+      ...prevPreferences,
+      location: address,
+    }));
   }, [address]);
 
   function savePreferences(e) {

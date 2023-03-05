@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// eslint-disable-next-line
-import { app, db } from "../utils/firebase";
 import {
   getAuth,
   signInWithEmailAndPassword,
