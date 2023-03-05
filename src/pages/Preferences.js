@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { AddressInput } from "../components";
 
 const Preferences = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const Preferences = () => {
   return (
     <div>
       <p>What is your location?</p>
-      <input name="location" type="text" />
+      <AddressInput />
       <p>Who do you usually hang out with?</p>
       <div>
         <input type="checkbox" id="myself" name="hangout-with" />
