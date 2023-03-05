@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+// import React, { useState, useEffect } from "react";
+import { getAuth, signOut } from "firebase/auth";
 
 const Navbar = () => {
   //   const [displayName, setDisplayName] = useState("");
