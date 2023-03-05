@@ -45,35 +45,80 @@ const Preferences = () => {
     e.preventDefault();
   }
 
-  function changeHandler(e) {}
+  function changeHandler(e) {
+    const { name, type, id, value, checked } = e.target;
+    console.log(name, type, value, checked);
+    const newValue =
+      type === "checkbox"
+        ? checked
+          ? changeArray(userPreferences[name], id, "add")
+          : changeArray(userPreferences[name], id, "remove")
+        : value;
+    console.log(newValue);
+    console.log(userPreferences.hangoutWith);
+    setUserPreferences({ ...userPreferences, [name]: newValue });
+    console.log(userPreferences);
+  }
+
+  function changeArray(array, value, action) {
+    switch (action) {
+      case "add":
+        array.push(value);
+        return array;
+      case "remove":
+        const index = array.indexOf(value);
+        const newArr = array.splice(index, 1);
+        console.log(array);
+        return array;
+      default:
+        return;
+    }
+  }
 
   return (
     <form onSubmit={savePreferences}>
+      <h2>
+        {userPreferences.hangoutWith.map((a) => (
+          <p>{a}</p>
+        ))}
+      </h2>
       <p>What is your location?</p>
       <AddressInput />
       <p>Set the range from your location</p>
-      <input type="number" onChange={changeHandler} /> Km
+      <input
+        type="number"
+        name="hangoutRange"
+        onChange={changeHandler}
+        value={userPreferences.hangoutRange || ""}
+      />
+      Km
       <p>Who do you usually hang out with?</p>
       <div>
         <input
           type="checkbox"
           id="myself"
-          name="hangout-with"
+          name="hangoutWith"
           value="myself"
           onChange={changeHandler}
         />
         <label htmlFor="myself">By myself</label>
       </div>
       <div>
-        <input type="checkbox" id="friends" name="hangout-with" />
+        <input
+          type="checkbox"
+          id="friends"
+          name="hangoutWith"
+          value="friends"
+          onChange={changeHandler}
+        />
         <label htmlFor="friends">With my friends</label>
       </div>
       <div>
-        <input type="checkbox" id="partner" name="hangout-with" />
+        <input type="checkbox" id="partner" name="hangoutWith" />
         <label htmlFor="partner">Girlfriend/Boyfriend</label>
       </div>
       <div>
-        <input type="checkbox" id="family" name="hangout-with" />
+        <input type="checkbox" id="family" name="hangoutWith" />
         <label htmlFor="family">Family</label>
       </div>
       <p>What is your favorite hangout type?</p>
