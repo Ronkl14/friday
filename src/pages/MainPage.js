@@ -71,7 +71,13 @@ const MainPage = () => {
       );
     }
     setFilteredResults(filteredFinal);
-  }, [places]);
+  }, [
+    places,
+    userData.hangoutRange,
+    userData.hangoutWith,
+    userData.priceRange,
+    userData.hangoutType,
+  ]);
 
   function chooseOption() {
     const randIndex = Math.floor(Math.random() * filteredResults.length);
