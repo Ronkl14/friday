@@ -29,11 +29,6 @@ const Preferences = () => {
     (async () => {
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
-
-      console.log(docData);
-      console.log(docData.geoPoint.latitude);
-      console.log(docData.geoPoint.longitude);
-
       if (
         docData.hangoutRange &&
         docData.hangoutType.length !== 0 &&
