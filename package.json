@@ -15,6 +15,10 @@
     "react-scripts": "5.0.1",
     "use-places-autocomplete": "^4.0.0"
   },
+  "resolutions": {
+    "react": "^18.2.0",
+    "@reach/combobox": "^0.18.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
