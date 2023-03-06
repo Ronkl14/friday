@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { AddressInput } from "../components";
@@ -10,6 +10,7 @@ const Preferences = () => {
   const navigate = useNavigate();
 
   const [address, setAddress] = useState("");
+  const [coordinates, setCoordinates] = useState([0, 0]);
 
   const [userPreferences, setUserPreferences] = useState({
     hangoutRange: null,
@@ -53,9 +54,34 @@ const Preferences = () => {
     }));
   }, [address]);
 
+  useEffect(() => {
+    setUserPreferences((prevPreferences) => ({
+      ...prevPreferences,
+      latitude: coordinates[0],
+      longitude: coordinates[1],
+    }));
+  }, [coordinates]);
+
   function savePreferences(e) {
     e.preventDefault();
     console.log(userPreferences);
+    const cityRef = doc(db, "users", auth.currentUser.uid);
+    setDoc(
+      cityRef,
+      {
+        location: userPreferences.location,
+        hangoutRange: userPreferences.hangoutRange,
+        hangoutType: userPreferences.hangoutType,
+        hangoutWith: userPreferences.hangoutWith,
+        priceRange: userPreferences.priceRange,
+        geoPoint: {
+          latitude: userPreferences.latitude,
+          longitude: userPreferences.longitude,
+        },
+      },
+      { merge: true }
+    );
+    navigate("/main");
   }
 
   function changeHandler(e) {
@@ -90,7 +116,7 @@ const Preferences = () => {
   return (
     <form onSubmit={savePreferences}>
       <p>What is your location?</p>
-      <AddressInput setAddress={setAddress} />
+      <AddressInput setAddress={setAddress} setCoordinates={setCoordinates} />
       <p>Set the range from your location</p>
       <input
         type="number"
