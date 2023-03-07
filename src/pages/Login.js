@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
 } from "firebase/auth";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, Button, Box, Paper } from "@mui/material";
 import loginImg from "../assets/img/login-page.jpg";
 
 const Login = () => {
@@ -33,10 +33,6 @@ const Login = () => {
     );
   }
 
-  function guestLogin() {
-    alert("this is for guests");
-  }
-
   return (
     <Box sx={{ width: "100vw", height: "100vh", display: "flex" }}>
       <Box
@@ -56,36 +52,37 @@ const Login = () => {
           width: "50vw",
         }}
       >
-        <form onSubmit={handleSubmit}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <TextField
-              sx={{ marginBottom: "1rem" }}
-              type="email"
-              name="email"
-              onChange={handleChange}
-              variant="outlined"
-              label="E-mail"
-            />
-            <TextField
-              sx={{ marginBottom: "1rem" }}
-              type="password"
-              name="password"
-              onChange={handleChange}
-              variant="outlined"
-              label="Password"
-            />
-            <Button type="submit" variant="contained">
-              Log in
-            </Button>
-          </Box>
-        </form>
-        <button onClick={guestLogin}>Guest Login</button>
+        <Paper elevation={3} sx={{ padding: "1rem" }}>
+          <form onSubmit={handleSubmit}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                sx={{ marginBottom: "1rem" }}
+                type="email"
+                name="email"
+                onChange={handleChange}
+                variant="outlined"
+                label="E-mail"
+              />
+              <TextField
+                sx={{ marginBottom: "1rem" }}
+                type="password"
+                name="password"
+                onChange={handleChange}
+                variant="outlined"
+                label="Password"
+              />
+              <Button type="submit" variant="contained">
+                Log in
+              </Button>
+            </Box>
+          </form>
+        </Paper>
         <p>
           Don't have an account? <Link to="/register">Register</Link>
         </p>

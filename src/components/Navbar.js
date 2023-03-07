@@ -1,5 +1,6 @@
 // import React, { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
+import { Button } from "@mui/material";
 
 const Navbar = () => {
   //   const [displayName, setDisplayName] = useState("");
@@ -15,7 +16,9 @@ const Navbar = () => {
 
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      <Button onClick={handleLogout} variant="contained">
+        Logout
+      </Button>
       {/* <p>{displayName}</p> */}
     </div>
   );

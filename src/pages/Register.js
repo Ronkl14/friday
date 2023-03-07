@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, GeoPoint } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { TextField, Button, Box } from "@mui/material";
+import registerImg from "../assets/img/register-page.jpg";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -46,18 +48,63 @@ const Register = () => {
   }
 
   return (
-    <form>
-      <label>E-mail:</label>
-      <input type="text" name="email" onChange={handleChange} />
-      <label>Name:</label>
-      <input type="text" name="name" onChange={handleChange} />
-      <label>Password:</label>
-      <input type="password" name="password" onChange={handleChange} />
-      <button onClick={handleSubmit}>Register</button>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </form>
+    <Box sx={{ height: "100vh", width: "100vw", display: "flex" }}>
+      <Box
+        sx={{
+          width: "50vw",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <form>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              sx={{ marginBottom: "1rem" }}
+              type="text"
+              name="email"
+              onChange={handleChange}
+              label="E-mail"
+            />
+            <TextField
+              sx={{ marginBottom: "1rem" }}
+              type="text"
+              name="name"
+              onChange={handleChange}
+              label="Name"
+            />
+            <TextField
+              sx={{ marginBottom: "1rem" }}
+              type="password"
+              name="password"
+              onChange={handleChange}
+              label="Password"
+            />
+            <Button onClick={handleSubmit} variant="contained">
+              Register
+            </Button>
+          </Box>
+        </form>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </Box>
+      <Box
+        sx={{
+          width: "50vw",
+          backgroundImage: `url(${registerImg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      ></Box>
+    </Box>
   );
 };
 
