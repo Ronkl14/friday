@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
 } from "firebase/auth";
+import { TextField, Button, Box } from "@mui/material";
+import loginImg from "../assets/img/login-page.jpg";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -36,19 +38,59 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>E-mail:</label>
-        <input type="email" name="email" onChange={handleChange} />
-        <label>Password:</label>
-        <input type="password" name="password" onChange={handleChange} />
-        <button type="submit">Log in</button>
-      </form>
-      <button onClick={guestLogin}>Guest Login</button>
-      <p>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
-    </div>
+    <Box sx={{ width: "100vw", height: "100vh", display: "flex" }}>
+      <Box
+        sx={{
+          width: "50vw",
+          backgroundImage: `url(${loginImg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      ></Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "50vw",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              sx={{ marginBottom: "1rem" }}
+              type="email"
+              name="email"
+              onChange={handleChange}
+              variant="outlined"
+              label="E-mail"
+            />
+            <TextField
+              sx={{ marginBottom: "1rem" }}
+              type="password"
+              name="password"
+              onChange={handleChange}
+              variant="outlined"
+              label="Password"
+            />
+            <Button type="submit" variant="contained">
+              Log in
+            </Button>
+          </Box>
+        </form>
+        <button onClick={guestLogin}>Guest Login</button>
+        <p>
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
+      </Box>
+    </Box>
   );
 };
 
