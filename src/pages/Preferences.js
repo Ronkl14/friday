@@ -5,6 +5,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { AddressInput } from "../components";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 const Preferences = () => {
   const navigate = useNavigate();
@@ -122,14 +123,17 @@ const Preferences = () => {
       Km
       <p>Who do you usually hang out with?</p>
       <div>
-        <input
-          type="checkbox"
-          id="myself"
-          name="hangoutWith"
-          value="myself"
-          onChange={changeHandler}
+        <FormControlLabel
+          control={
+            <Checkbox
+              id="myself"
+              name="hangoutWith"
+              value="myself"
+              onChange={changeHandler}
+            />
+          }
+          label="By myself"
         />
-        <label htmlFor="myself">By myself</label>
       </div>
       <div>
         <input

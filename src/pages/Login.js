@@ -5,8 +5,9 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
 } from "firebase/auth";
-import { TextField, Button, Box, Paper } from "@mui/material";
+import { TextField, Button, Box, Paper, Typography } from "@mui/material";
 import loginImg from "../assets/img/login-page.jpg";
+import logo from "../assets/img/logo.png";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -52,7 +53,18 @@ const Login = () => {
           width: "50vw",
         }}
       >
-        <Paper elevation={3} sx={{ padding: "1rem" }}>
+        <Paper
+          elevation={4}
+          sx={{
+            p: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "25vw",
+            m: "0 auto",
+          }}
+        >
+          <img src={logo} width="120vw" style={{ marginBottom: "2rem" }} />
           <form onSubmit={handleSubmit}>
             <Box
               sx={{
@@ -82,10 +94,13 @@ const Login = () => {
               </Button>
             </Box>
           </form>
+          <Typography sx={{ textAlign: "center", mt: "1rem" }}>
+            Don't have an account?
+            <Link to="/register">
+              <Typography color="secondary">Register</Typography>
+            </Link>
+          </Typography>
         </Paper>
-        <p>
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
       </Box>
     </Box>
   );

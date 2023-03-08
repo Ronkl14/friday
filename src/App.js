@@ -16,10 +16,25 @@ import {
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useLoadScript } from "@react-google-maps/api";
-
+import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 const libraries = ["places"];
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+      primary: {
+        main: "rgb(134, 93, 255)",
+      },
+      secondary: {
+        main: "#E384FF",
+      },
+      background: {
+        default: "#191825",
+      },
+    },
+  });
+
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const auth = getAuth();
 
@@ -67,7 +82,12 @@ function App() {
     });
   }, [auth, router]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;
