@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useLoadScript } from "@react-google-maps/api";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import { PreferencesProvider } from "./context/PreferencesContext";
 const libraries = ["places"];
 
 function App() {
@@ -85,7 +86,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <RouterProvider router={router} />
+      <PreferencesProvider>
+        <RouterProvider router={router} />
+      </PreferencesProvider>
     </ThemeProvider>
   );
 }

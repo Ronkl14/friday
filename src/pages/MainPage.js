@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { getAuth } from "firebase/auth";
+import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const MainPage = () => {
   const [places, setPlaces] = useState([]);
@@ -12,6 +13,7 @@ const MainPage = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [chosenOption, setChosenOption] = useState([]);
   const auth = getAuth();
+  const { setRedirected } = usePreferencesGlobalContext();
 
   useEffect(() => {
     const docRef = doc(db, "users", auth.currentUser.uid);
@@ -80,6 +82,9 @@ const MainPage = () => {
   ]);
 
   function chooseOption() {
+    if (filteredResults.length === 0) {
+      return;
+    }
     const randIndex = Math.floor(Math.random() * filteredResults.length);
     setChosenOption(filteredResults[randIndex]);
     console.log(chosenOption);
@@ -88,7 +93,11 @@ const MainPage = () => {
   return (
     <div>
       <button onClick={chooseOption}>Choose for me</button>
-      {chosenOption.length !== 0 && <h2>{chosenOption[1].name}</h2>}
+      {chosenOption.length !== 0 ? (
+        <h2>{chosenOption[1].name}</h2>
+      ) : (
+        <h2>No found places</h2>
+      )}
     </div>
   );
 };

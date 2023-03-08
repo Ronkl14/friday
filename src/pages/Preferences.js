@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -6,40 +5,26 @@ import { db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { AddressInput } from "../components";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const Preferences = () => {
   const navigate = useNavigate();
-
+  const { userPreferences, setUserPreferences, redirected, setRedirected } =
+    usePreferencesGlobalContext();
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState([0, 0]);
-
-  const [userPreferences, setUserPreferences] = useState({
-    hangoutRange: null,
-    hangoutType: [],
-    hangoutWith: [],
-    priceRange: null,
-    location: null,
-    longitude: 0,
-    latitude: 0,
-  });
+  const [firstTimeSetup, setFirstTimeSetup] = useState(true);
 
   const auth = getAuth();
   const docRef = doc(db, "users", auth.currentUser.uid);
 
   useEffect(() => {
+    if (!redirected) {
+      navigate("/main");
+    }
     (async () => {
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
-      if (
-        docData.hangoutRange &&
-        docData.hangoutType.length !== 0 &&
-        docData.hangoutWith.length !== 0 &&
-        docData.location &&
-        docData.geoPoint.latitude !== 0 &&
-        docData.geoPoint.longitude !== 0
-      ) {
-        navigate("/main");
-      }
     })();
   }, [docRef, navigate]);
 
@@ -60,6 +45,7 @@ const Preferences = () => {
 
   function savePreferences(e) {
     e.preventDefault();
+    setRedirected(false);
     console.log(userPreferences);
     const cityRef = doc(db, "users", auth.currentUser.uid);
     setDoc(
@@ -77,6 +63,7 @@ const Preferences = () => {
       },
       { merge: true }
     );
+    setFirstTimeSetup(false);
     navigate("/main");
   }
 

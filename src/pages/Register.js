@@ -10,8 +10,10 @@ import { doc, setDoc, GeoPoint } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { TextField, Button, Box } from "@mui/material";
 import registerImg from "../assets/img/register-page.jpg";
+import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const Register = () => {
+  const { setRedirected } = usePreferencesGlobalContext();
   const [registerData, setRegisterData] = useState({
     email: "",
     name: "",
@@ -28,6 +30,7 @@ const Register = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setRedirected(true);
     createUserWithEmailAndPassword(
       auth,
       registerData.email,

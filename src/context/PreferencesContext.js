@@ -1,17 +1,32 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const PreferencesContext = createContext();
 
 const PreferencesProvider = ({ children }) => {
-  const initialState = {
-    users: [],
-    user: {},
-    repos: [],
-    loading: false,
-  };
+  const [userPreferences, setUserPreferences] = useState({
+    hangoutRange: null,
+    hangoutType: [],
+    hangoutWith: [],
+    priceRange: null,
+    location: null,
+    longitude: 0,
+    latitude: 0,
+  });
+
+  const [firstTimeSetup, setFirstTimeSetup] = useState(true);
+  const [redirected, setRedirected] = useState(false);
 
   return (
-    <PreferencesContext.Provider value={{}}>
+    <PreferencesContext.Provider
+      value={{
+        userPreferences,
+        setUserPreferences,
+        firstTimeSetup,
+        setFirstTimeSetup,
+        redirected,
+        setRedirected,
+      }}
+    >
       {children}
     </PreferencesContext.Provider>
   );

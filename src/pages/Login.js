@@ -8,6 +8,9 @@ import {
 import { TextField, Button, Box, Paper, Typography } from "@mui/material";
 import loginImg from "../assets/img/login-page.jpg";
 import logo from "../assets/img/logo.png";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../utils/firebase";
+import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -15,10 +18,23 @@ const Login = () => {
     password: "",
   });
 
+  const { setUserPreferences, userPreferences } = usePreferencesGlobalContext();
   const auth = getAuth();
 
   useEffect(() => {
     setPersistence(auth, localStorage);
+    (async () => {
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setUserPreferences(docSnap.data());
+        console.log(docSnap.data());
+        console.log(userPreferences);
+      } else {
+        console.log("No such document!");
+      }
+    })();
   }, [auth]);
 
   function handleChange(e) {
