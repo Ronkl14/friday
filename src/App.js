@@ -30,7 +30,7 @@ function App() {
         main: "#E384FF",
       },
       background: {
-        default: "#191825",
+        default: "#131217",
       },
     },
   });

@@ -54,8 +54,9 @@ const Login = () => {
         }}
       >
         <Paper
-          elevation={4}
+          elevation={5}
           sx={{
+            borderRadius: "5px",
             p: "1.5rem",
             display: "flex",
             flexDirection: "column",
@@ -64,7 +65,12 @@ const Login = () => {
             m: "0 auto",
           }}
         >
-          <img src={logo} width="120vw" style={{ marginBottom: "2rem" }} />
+          <img
+            src={logo}
+            width="120vw"
+            alt="logo"
+            style={{ marginBottom: "2rem" }}
+          />
           <form onSubmit={handleSubmit}>
             <Box
               sx={{
@@ -89,7 +95,7 @@ const Login = () => {
                 variant="outlined"
                 label="Password"
               />
-              <Button type="submit" variant="contained">
+              <Button type="submit" variant="contained" color="secondary">
                 Log in
               </Button>
             </Box>
