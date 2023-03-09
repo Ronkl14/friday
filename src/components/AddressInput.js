@@ -46,7 +46,7 @@ const AddressInput = ({ setAddress, setCoordinates, passedAddress }) => {
         placeholder="enter your location"
       />
       <ComboboxPopover>
-        <ComboboxList style={{ backgroundColor: "white" }}>
+        <ComboboxList style={{ backgroundColor: "white", color: "black" }}>
           {status === "OK" &&
             data.map(({ place_id, description }) => (
               <ComboboxOption key={place_id} value={description} />

@@ -4,7 +4,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { AddressInput } from "../components";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const Preferences = () => {
@@ -141,136 +141,200 @@ const Preferences = () => {
       />
       Km
       <p>Who do you usually hang out with?</p>
-      <div>
-        <FormControlLabel
-          control={
-            <Checkbox
-              id="myself"
-              name="hangoutWith"
-              value="myself"
-              onChange={changeHandler}
-              checked={
-                userPreferences.hangoutWith
-                  ? userPreferences.hangoutWith.includes("myself")
-                  : false
-              }
-            />
-          }
-          label="By myself"
-        />
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="friends"
-          name="hangoutWith"
-          value="friends"
-          onChange={changeHandler}
-        />
-        <label htmlFor="friends">With my friends</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="partner"
-          name="hangoutWith"
-          value="partner"
-          onChange={changeHandler}
-        />
-        <label htmlFor="partner">Girlfriend/Boyfriend</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="family"
-          name="hangoutWith"
-          value="family"
-          onChange={changeHandler}
-        />
-        <label htmlFor="family">Family</label>
-      </div>
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="myself"
+            name="hangoutWith"
+            value="myself"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutWith
+                ? userPreferences.hangoutWith.includes("myself")
+                : false
+            }
+          />
+        }
+        label="By myself"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="friends"
+            name="hangoutWith"
+            value="friends"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutWith
+                ? userPreferences.hangoutWith.includes("friends")
+                : false
+            }
+          />
+        }
+        label="Friends"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="partner"
+            name="hangoutWith"
+            value="partner"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutWith
+                ? userPreferences.hangoutWith.includes("partner")
+                : false
+            }
+          />
+        }
+        label="Girlfriend/Boyfriend"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="family"
+            name="hangoutWith"
+            value="family"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutWith
+                ? userPreferences.hangoutWith.includes("family")
+                : false
+            }
+          />
+        }
+        label="Family"
+      />
       <p>What is your favorite hangout type?</p>
-      <div>
-        <input
-          type="checkbox"
-          id="food"
-          name="hangoutType"
-          value="food"
-          onChange={changeHandler}
-        />
-        <label htmlFor="food">Food</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="club"
-          name="hangoutType"
-          value="club"
-          onChange={changeHandler}
-        />
-        <label htmlFor="club">Clubbing/Parties</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="romantic"
-          name="hangoutType"
-          value="romantic"
-          onChange={changeHandler}
-        />
-        <label htmlFor="romantic">Romantic</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="culture"
-          name="hangoutType"
-          value="culture"
-          onChange={changeHandler}
-        />
-        <label htmlFor="culture">Culture</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="chill"
-          name="hangoutType"
-          value="chill"
-          onChange={changeHandler}
-        />
-        <label htmlFor="chill">Chill</label>
-      </div>
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="food"
+            name="hangoutType"
+            value="food"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutType
+                ? userPreferences.hangoutType.includes("food")
+                : false
+            }
+          />
+        }
+        label="Food"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="club"
+            name="hangoutType"
+            value="club"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutType
+                ? userPreferences.hangoutType.includes("club")
+                : false
+            }
+          />
+        }
+        label="Clubbing/Parties"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="romantic"
+            name="hangoutType"
+            value="romantic"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutType
+                ? userPreferences.hangoutType.includes("romantic")
+                : false
+            }
+          />
+        }
+        label="Romantic"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="culture"
+            name="hangoutType"
+            value="culture"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutType
+                ? userPreferences.hangoutType.includes("culture")
+                : false
+            }
+          />
+        }
+        label="Culture"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            id="chill"
+            name="hangoutType"
+            value="chill"
+            onChange={changeHandler}
+            checked={
+              userPreferences.hangoutType
+                ? userPreferences.hangoutType.includes("chill")
+                : false
+            }
+          />
+        }
+        label="Chill"
+      />
       <p>Select price range:</p>
-      <div>
-        <input
-          type="radio"
-          id="cheap"
-          name="priceRange"
-          value="cheap"
-          onChange={changeHandler}
-        />
-        <label htmlFor="cheap">Under 100 NIS</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          id="medium"
-          name="priceRange"
-          value="medium"
-          onChange={changeHandler}
-        />
-        <label htmlFor="medium">100-200 NIS</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          id="expensive"
-          name="priceRange"
-          value="expensive"
-          onChange={changeHandler}
-        />
-        <label htmlFor="expensive">200+ NIS</label>
-      </div>
+      <FormControlLabel
+        control={
+          <Radio
+            id="cheap"
+            name="priceRange"
+            value="cheap"
+            onChange={changeHandler}
+            checked={
+              userPreferences.priceRange
+                ? userPreferences.priceRange.includes("cheap")
+                : false
+            }
+          />
+        }
+        label="Under 100 NIS"
+      />
+      <FormControlLabel
+        control={
+          <Radio
+            id="medium"
+            name="priceRange"
+            value="medium"
+            onChange={changeHandler}
+            checked={
+              userPreferences.priceRange
+                ? userPreferences.priceRange.includes("medium")
+                : false
+            }
+          />
+        }
+        label="100-200 NIS"
+      />
+      <FormControlLabel
+        control={
+          <Radio
+            id="expensive"
+            name="priceRange"
+            value="expensive"
+            onChange={changeHandler}
+            checked={
+              userPreferences.priceRange
+                ? userPreferences.priceRange.includes("expensive")
+                : false
+            }
+          />
+        }
+        label="200+ NIS"
+      />
       <button type="submit">Save my preferences</button>
     </form>
   );
