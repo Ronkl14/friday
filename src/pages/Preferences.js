@@ -9,24 +9,52 @@ import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const Preferences = () => {
   const navigate = useNavigate();
-  const { userPreferences, setUserPreferences, redirected, setRedirected } =
-    usePreferencesGlobalContext();
+  const {
+    userPreferences,
+    setUserPreferences,
+    redirected,
+    setRedirected,
+    afterLogin,
+    setAfterLogin,
+  } = usePreferencesGlobalContext();
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState([0, 0]);
   const [firstTimeSetup, setFirstTimeSetup] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
-  const docRef = doc(db, "users", auth.currentUser.uid);
+
+  let docData;
 
   useEffect(() => {
     if (!redirected) {
       navigate("/main");
     }
     (async () => {
+      const docRef = doc(db, "users", auth.currentUser.uid);
       const docSnap = await getDoc(docRef);
-      const docData = docSnap.data();
+      docData = docSnap.data();
+      setIsLoading(false);
+      setUserPreferences(docData);
+      console.log(userPreferences);
     })();
-  }, [docRef, navigate]);
+  }, [navigate]);
+
+  useEffect(() => {
+    if (
+      afterLogin &&
+      userPreferences.hangoutRange &&
+      userPreferences.geoPoint.longitude &&
+      userPreferences.geoPoint.latitude &&
+      userPreferences.hangoutType.length !== 0 &&
+      userPreferences.hangoutWith.length !== 0 &&
+      userPreferences.location &&
+      userPreferences.priceRange
+    ) {
+      navigate("/main");
+      setAfterLogin(false);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     setUserPreferences((prevPreferences) => ({
@@ -99,13 +127,17 @@ const Preferences = () => {
   return (
     <form onSubmit={savePreferences}>
       <p>What is your location?</p>
-      <AddressInput setAddress={setAddress} setCoordinates={setCoordinates} />
+      <AddressInput
+        setAddress={setAddress}
+        setCoordinates={setCoordinates}
+        passedAddress={userPreferences.location}
+      />
       <p>Set the range from your location</p>
       <input
         type="number"
         name="hangoutRange"
         onChange={changeHandler}
-        value={userPreferences.hangoutRange || ""}
+        value={userPreferences.hangoutRange}
       />
       Km
       <p>Who do you usually hang out with?</p>
@@ -117,6 +149,11 @@ const Preferences = () => {
               name="hangoutWith"
               value="myself"
               onChange={changeHandler}
+              checked={
+                userPreferences.hangoutWith
+                  ? userPreferences.hangoutWith.includes("myself")
+                  : false
+              }
             />
           }
           label="By myself"

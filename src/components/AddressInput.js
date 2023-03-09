@@ -10,8 +10,10 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { useState } from "react";
 
-const AddressInput = ({ setAddress, setCoordinates }) => {
+const AddressInput = ({ setAddress, setCoordinates, passedAddress }) => {
+  const [existingAddress, setExistingAddress] = useState(passedAddress);
   const {
     ready,
     value,
@@ -21,6 +23,7 @@ const AddressInput = ({ setAddress, setCoordinates }) => {
   } = usePlacesAutocomplete();
 
   function addressInputHandler(e) {
+    setExistingAddress("");
     setValue(e.target.value);
   }
 
@@ -37,7 +40,7 @@ const AddressInput = ({ setAddress, setCoordinates }) => {
   return (
     <Combobox onSelect={handleSelect}>
       <ComboboxInput
-        value={value}
+        value={existingAddress ? existingAddress : value}
         onChange={addressInputHandler}
         disabled={!ready}
         placeholder="enter your location"

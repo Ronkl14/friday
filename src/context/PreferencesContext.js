@@ -15,6 +15,7 @@ const PreferencesProvider = ({ children }) => {
 
   const [firstTimeSetup, setFirstTimeSetup] = useState(true);
   const [redirected, setRedirected] = useState(false);
+  const [afterLogin, setAfterLogin] = useState(false);
 
   return (
     <PreferencesContext.Provider
@@ -25,6 +26,8 @@ const PreferencesProvider = ({ children }) => {
         setFirstTimeSetup,
         redirected,
         setRedirected,
+        afterLogin,
+        setAfterLogin,
       }}
     >
       {children}

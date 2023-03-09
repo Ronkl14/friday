@@ -30,7 +30,6 @@ const Register = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setRedirected(true);
     createUserWithEmailAndPassword(
       auth,
       registerData.email,
@@ -46,6 +45,7 @@ const Register = () => {
         hangoutRange: null,
         priceRange: null,
       });
+      setRedirected(true);
       return updateProfile(user, { displayName: registerData.name });
     });
   }

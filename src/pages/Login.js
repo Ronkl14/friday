@@ -18,7 +18,8 @@ const Login = () => {
     password: "",
   });
 
-  const { setUserPreferences, userPreferences } = usePreferencesGlobalContext();
+  const { setUserPreferences, userPreferences, setRedirected, setAfterLogin } =
+    usePreferencesGlobalContext();
   const auth = getAuth();
 
   useEffect(() => {
@@ -45,6 +46,8 @@ const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setRedirected(true);
+    setAfterLogin(true);
     signInWithEmailAndPassword(auth, loginData.email, loginData.password).then(
       (response) => localStorage.setItem("user", JSON.stringify(response.user))
     );
