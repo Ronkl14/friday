@@ -16,9 +16,9 @@ const Preferences = () => {
     setRedirected,
     afterLogin,
     setAfterLogin,
+    coordinates,
   } = usePreferencesGlobalContext();
   const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState([0, 0]);
   const [firstTimeSetup, setFirstTimeSetup] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -129,7 +129,6 @@ const Preferences = () => {
       <p>What is your location?</p>
       <AddressInput
         setAddress={setAddress}
-        setCoordinates={setCoordinates}
         passedAddress={userPreferences.location}
       />
       <p>Set the range from your location</p>

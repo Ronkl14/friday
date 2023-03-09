@@ -16,6 +16,7 @@ const PreferencesProvider = ({ children }) => {
   const [firstTimeSetup, setFirstTimeSetup] = useState(true);
   const [redirected, setRedirected] = useState(false);
   const [afterLogin, setAfterLogin] = useState(false);
+  const [coordinates, setCoordinates] = useState([0, 0]);
 
   return (
     <PreferencesContext.Provider
@@ -28,6 +29,8 @@ const PreferencesProvider = ({ children }) => {
         setRedirected,
         afterLogin,
         setAfterLogin,
+        coordinates,
+        setCoordinates,
       }}
     >
       {children}

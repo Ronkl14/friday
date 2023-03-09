@@ -11,9 +11,11 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import { useState } from "react";
+import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
-const AddressInput = ({ setAddress, setCoordinates, passedAddress }) => {
+const AddressInput = ({ setAddress, passedAddress }) => {
   const [existingAddress, setExistingAddress] = useState(passedAddress);
+  const { setCoordinates } = usePreferencesGlobalContext();
   const {
     ready,
     value,
