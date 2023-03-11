@@ -5,7 +5,15 @@ import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { getAuth } from "firebase/auth";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
-import { Card, Box, CardMedia, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  Box,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const [places, setPlaces] = useState([]);
@@ -15,6 +23,7 @@ const MainPage = () => {
   const [chosenOption, setChosenOption] = useState([]);
   const auth = getAuth();
   const { setRedirected } = usePreferencesGlobalContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const docRef = doc(db, "users", auth.currentUser.uid);
@@ -91,6 +100,11 @@ const MainPage = () => {
     console.log(chosenOption);
   }
 
+  function editPreferences() {
+    setRedirected(true);
+    navigate("/preferences");
+  }
+
   return (
     <div>
       <button onClick={chooseOption}>Choose for me</button>
@@ -113,6 +127,9 @@ const MainPage = () => {
       ) : (
         <h2>No found places</h2>
       )}
+      <Button variant="contained" onClick={editPreferences}>
+        Change Preferences
+      </Button>
     </div>
   );
 };
