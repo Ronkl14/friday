@@ -156,7 +156,7 @@ const Preferences = () => {
             }
           />
         }
-        label="By myself"
+        label="Just me"
       />
       <FormControlLabel
         control={
@@ -188,7 +188,7 @@ const Preferences = () => {
             }
           />
         }
-        label="Girlfriend/Boyfriend"
+        label="Partner"
       />
       <FormControlLabel
         control={
