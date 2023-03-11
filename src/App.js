@@ -6,6 +6,8 @@ import {
   UserPanel,
   ErrorPage,
   LandingPage,
+  LocationList,
+  EditPlace,
 } from "./pages";
 import { MainNavigation } from "./components";
 import {
@@ -64,6 +66,14 @@ function App() {
         {
           path: "/user-panel",
           element: user ? <UserPanel /> : <Navigate to="/login" />,
+        },
+        {
+          path: "/location-list",
+          element: user ? <LocationList /> : <Navigate to="/login" />,
+        },
+        {
+          path: "/edit/:id",
+          element: user ? <EditPlace /> : <Navigate to="/login" />,
         },
         { path: "*", element: <ErrorPage /> },
       ],

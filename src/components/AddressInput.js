@@ -12,6 +12,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { useState } from "react";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
+import "./a.css";
 
 const AddressInput = ({ setAddress, passedAddress }) => {
   const [existingAddress, setExistingAddress] = useState(passedAddress);
@@ -42,16 +43,21 @@ const AddressInput = ({ setAddress, passedAddress }) => {
   return (
     <Combobox onSelect={handleSelect}>
       <ComboboxInput
+        className="pref-input"
         value={existingAddress ? existingAddress : value}
         onChange={addressInputHandler}
         disabled={!ready}
         placeholder="enter your location"
       />
       <ComboboxPopover>
-        <ComboboxList style={{ backgroundColor: "white", color: "black" }}>
+        <ComboboxList className="pref-drop">
           {status === "OK" &&
             data.map(({ place_id, description }) => (
-              <ComboboxOption key={place_id} value={description} />
+              <ComboboxOption
+                className="pref-option"
+                key={place_id}
+                value={description}
+              />
             ))}
         </ComboboxList>
       </ComboboxPopover>

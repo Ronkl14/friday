@@ -1,0 +1,40 @@
+.pref-input {
+  outline: 0;
+  border: 0;
+  font-size: 1rem;
+  border-bottom: 2px solid gray;
+  padding: 15px 0 0;
+  line-height: 2rem;
+  color: white;
+  background-color: #131217;
+}
+
+.pref-drop {
+  padding: 0 0.5rem;
+  width: 150%;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  font-size: 14px;
+  color: black;
+  list-style: none;
+}
+
+.pref-option {
+  margin: 5px 0;
+}
+
+.pref-option:hover {
+  background-color: #9098a9;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

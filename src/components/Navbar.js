@@ -1,19 +1,13 @@
-// import React, { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const Navbar = () => {
-  //   const [displayName, setDisplayName] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
   const { setRedirected, setUserPreferences, userPreferences } =
     usePreferencesGlobalContext();
-
-  //   useEffect(() => {
-  //     setDisplayName(JSON.parse(localStorage.getItem(user)).displayName);
-  //   }, []);
 
   function handleLogout() {
     setRedirected(false);
@@ -35,8 +29,9 @@ const Navbar = () => {
       <Button onClick={handleLogout} variant="contained">
         Logout
       </Button>
-
-      {/* <p>{displayName}</p> */}
+      <Button onClick={() => navigate("/location-list")} variant="contained">
+        All locations
+      </Button>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { getAuth } from "firebase/auth";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
+import { Card, Box, CardMedia, CardContent, Typography } from "@mui/material";
 
 const MainPage = () => {
   const [places, setPlaces] = useState([]);
@@ -94,7 +95,21 @@ const MainPage = () => {
     <div>
       <button onClick={chooseOption}>Choose for me</button>
       {chosenOption.length !== 0 ? (
-        <h2>{chosenOption[1].name}</h2>
+        <Box>
+          <Card>
+            HI
+            <CardMedia
+              component="img"
+              image={chosenOption[1].photoUrl}
+              height="140"
+              alt="location"
+            />
+            <CardContent>
+              <Typography>{chosenOption[1].name}</Typography>
+              <Typography>{chosenOption[1].address}</Typography>
+            </CardContent>
+          </Card>
+        </Box>
       ) : (
         <h2>No found places</h2>
       )}

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AddressInput } from "../components";
 import { Checkbox, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
+import "../components/a.css";
 
 const Preferences = () => {
   const navigate = useNavigate();
@@ -133,6 +134,7 @@ const Preferences = () => {
       />
       <p>Set the range from your location</p>
       <input
+        className="pref-input"
         type="number"
         name="hangoutRange"
         onChange={changeHandler}
