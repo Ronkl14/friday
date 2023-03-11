@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import {
   FormControlLabel,
   Checkbox,
@@ -15,6 +15,7 @@ import { AddressInput } from "../components";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
 
 const EditPlace = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [location, setLocation] = useState({
     geoPoint: { latitude: 0, longitude: 0 },
@@ -80,8 +81,29 @@ const EditPlace = () => {
     }
   }
 
+  function saveLocation(e) {
+    e.preventDefault();
+    const locationRef = doc(db, "places", id);
+    setDoc(
+      locationRef,
+      {
+        name: location.name,
+        address: location.address,
+        type: location.type,
+        with: location.with,
+        price: location.price,
+        geoPoint: {
+          latitude: location.geoPoint.latitude,
+          longitude: location.geoPoint.longitude,
+        },
+      },
+      { merge: true }
+    );
+    navigate("/location-list");
+  }
+
   return (
-    <form>
+    <form onSubmit={saveLocation}>
       <div>
         <label htmlFor="name">Name: </label>
         <input
@@ -246,7 +268,9 @@ const EditPlace = () => {
         }
         label="200+ NIS"
       />
-      <Button variant="contained">Submit</Button>
+      <Button variant="contained" type="submit">
+        Submit
+      </Button>
     </form>
   );
 };

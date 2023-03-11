@@ -1,12 +1,19 @@
 import React from "react";
 import { Button, Box, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../utils/firebase";
 
-const SingleLocation = ({ name, id }) => {
+const SingleLocation = ({ name, id, getPlaces }) => {
   const navigate = useNavigate();
 
   function editPlace() {
     navigate(`/edit/${id}`);
+  }
+
+  async function deleteLocation() {
+    await deleteDoc(doc(db, "places", id));
+    getPlaces();
   }
 
   return (
@@ -23,7 +30,7 @@ const SingleLocation = ({ name, id }) => {
           <Button color="secondary" onClick={editPlace}>
             Edit
           </Button>
-          <Button>Delete</Button>
+          <Button onClick={deleteLocation}>Delete</Button>
         </Box>
       </Box>
     </Paper>

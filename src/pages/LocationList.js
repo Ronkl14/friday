@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../utils/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, doc, deleteDoc } from "firebase/firestore";
 import { SingleLocation } from "../components";
 
 const LocationList = () => {
@@ -21,7 +21,12 @@ const LocationList = () => {
   return (
     <div>
       {allPlaces.map((place) => (
-        <SingleLocation key={place[0]} id={place[0]} name={place[1].name} />
+        <SingleLocation
+          key={place[0]}
+          id={place[0]}
+          name={place[1].name}
+          getPlaces={getPlaces}
+        />
       ))}
     </div>
   );
