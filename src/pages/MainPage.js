@@ -23,6 +23,7 @@ const MainPage = () => {
   const [chosenOption, setChosenOption] = useState([]);
   const auth = getAuth();
   const { setRedirected } = usePreferencesGlobalContext();
+  const [notFound, setNotFound] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,8 +94,12 @@ const MainPage = () => {
 
   function chooseOption() {
     if (filteredResults.length === 0) {
+      setNotFound(
+        `Couldn't find any places, maybe changing preferences will help`
+      );
       return;
     }
+    setNotFound("");
     const randIndex = Math.floor(Math.random() * filteredResults.length);
     setChosenOption(filteredResults[randIndex]);
     console.log(chosenOption);
@@ -107,11 +112,9 @@ const MainPage = () => {
 
   return (
     <div>
-      <button onClick={chooseOption}>Choose for me</button>
       {chosenOption.length !== 0 ? (
-        <Box>
+        <Box sx={{ width: "30vw", m: "2rem auto" }}>
           <Card>
-            HI
             <CardMedia
               component="img"
               image={chosenOption[1].photoUrl}
@@ -125,11 +128,26 @@ const MainPage = () => {
           </Card>
         </Box>
       ) : (
-        <h2>No found places</h2>
+        <Box sx={{ textAlign: "center", m: "2rem" }}>
+          <Typography>{notFound}</Typography>
+        </Box>
       )}
-      <Button variant="contained" onClick={editPreferences}>
-        Change Preferences
-      </Button>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "1rem",
+          width: "98vw",
+          justifyContent: "center",
+          m: "1rem",
+        }}
+      >
+        <Button variant="contained" onClick={editPreferences}>
+          Change Preferences
+        </Button>
+        <Button onClick={chooseOption} variant="contained">
+          Choose for me
+        </Button>
+      </Box>
     </div>
   );
 };

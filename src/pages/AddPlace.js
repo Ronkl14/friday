@@ -10,6 +10,7 @@ import {
   Radio,
   Box,
   Button,
+  Paper,
 } from "@mui/material";
 import { AddressInput } from "../components";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
@@ -97,161 +98,167 @@ const AddPlace = () => {
   }
 
   return (
-    <form onSubmit={saveLocation}>
-      <div>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className="pref-input"
-          value={location.name}
-          onChange={changeHandler}
-        />
-      </div>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography>Address: </Typography>
-        <AddressInput setAddress={setAddress} passedAddress={address} />
-      </Box>
-      <Typography>With:</Typography>
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="myself"
-            name="with"
-            value="myself"
-            onChange={changeHandler}
+    <Box sx={{ p: "0 28rem", m: "1rem" }}>
+      <Paper sx={{ p: "0 1rem" }} elevation={5}>
+        <form onSubmit={saveLocation}>
+          <div>
+            <label htmlFor="name">Name: </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className="pref-input"
+              value={location.name}
+              onChange={changeHandler}
+            />
+          </div>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography>Address: </Typography>
+            <AddressInput setAddress={setAddress} passedAddress={address} />
+          </Box>
+          <Typography>With:</Typography>
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="myself"
+                name="with"
+                value="myself"
+                onChange={changeHandler}
+              />
+            }
+            label="By myself"
           />
-        }
-        label="By myself"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="friends"
-            name="with"
-            value="friends"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="friends"
+                name="with"
+                value="friends"
+                onChange={changeHandler}
+              />
+            }
+            label="Friends"
           />
-        }
-        label="Friends"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="partner"
-            name="with"
-            value="partner"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="partner"
+                name="with"
+                value="partner"
+                onChange={changeHandler}
+              />
+            }
+            label="Girlfriend/Boyfriend"
           />
-        }
-        label="Girlfriend/Boyfriend"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="family"
-            name="with"
-            value="family"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="family"
+                name="with"
+                value="family"
+                onChange={changeHandler}
+              />
+            }
+            label="Family"
           />
-        }
-        label="Family"
-      />
-      <Typography>Type:</Typography>
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="food"
-            name="type"
-            value="food"
-            onChange={changeHandler}
+          <Typography>Type:</Typography>
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="food"
+                name="type"
+                value="food"
+                onChange={changeHandler}
+              />
+            }
+            label="Food"
           />
-        }
-        label="Food"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="club"
-            name="type"
-            value="club"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="club"
+                name="type"
+                value="club"
+                onChange={changeHandler}
+              />
+            }
+            label="Clubbing/Parties"
           />
-        }
-        label="Clubbing/Parties"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="romantic"
-            name="type"
-            value="romantic"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="romantic"
+                name="type"
+                value="romantic"
+                onChange={changeHandler}
+              />
+            }
+            label="Romantic"
           />
-        }
-        label="Romantic"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="culture"
-            name="type"
-            value="culture"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="culture"
+                name="type"
+                value="culture"
+                onChange={changeHandler}
+              />
+            }
+            label="Culture"
           />
-        }
-        label="Culture"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            id="chill"
-            name="type"
-            value="chill"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="chill"
+                name="type"
+                value="chill"
+                onChange={changeHandler}
+              />
+            }
+            label="Chill"
           />
-        }
-        label="Chill"
-      />
-      <Typography>Price range:</Typography>
-      <FormControlLabel
-        control={
-          <Radio
-            id="cheap"
-            name="price"
-            value="cheap"
-            onChange={changeHandler}
+          <Typography>Price range:</Typography>
+          <FormControlLabel
+            control={
+              <Radio
+                id="cheap"
+                name="price"
+                value="cheap"
+                onChange={changeHandler}
+              />
+            }
+            label="Under 100 NIS"
           />
-        }
-        label="Under 100 NIS"
-      />
-      <FormControlLabel
-        control={
-          <Radio
-            id="medium"
-            name="price"
-            value="medium"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Radio
+                id="medium"
+                name="price"
+                value="medium"
+                onChange={changeHandler}
+              />
+            }
+            label="100-200 NIS"
           />
-        }
-        label="100-200 NIS"
-      />
-      <FormControlLabel
-        control={
-          <Radio
-            id="expensive"
-            name="price"
-            value="expensive"
-            onChange={changeHandler}
+          <FormControlLabel
+            control={
+              <Radio
+                id="expensive"
+                name="price"
+                value="expensive"
+                onChange={changeHandler}
+              />
+            }
+            label="200+ NIS"
           />
-        }
-        label="200+ NIS"
-      />
-      <Button variant="contained" type="submit">
-        Submit
-      </Button>
-    </form>
+          <div>
+            <Button variant="contained" type="submit" sx={{ m: "1rem" }}>
+              Submit
+            </Button>
+          </div>
+        </form>
+      </Paper>
+    </Box>
   );
 };
 

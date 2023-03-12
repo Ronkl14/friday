@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LandingPageStyled } from "../styled/LandingPageStyled";
 import logo from "../assets/img/logo6.png";
 import bored from "../assets/img/boredom.jpg";
@@ -7,6 +7,7 @@ import happy from "../assets/img/happy.jpg";
 import { Button } from "@mui/material";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <LandingPageStyled>
       <div className="logo-wrap">
@@ -24,10 +25,20 @@ const LandingPage = () => {
         why not get started right now?
       </h3>
       <div className="buttons">
-        <Button variant="contained" color="secondary" className="btn">
+        <Button
+          variant="contained"
+          color="secondary"
+          className="btn"
+          onClick={() => navigate("/login")}
+        >
           Login
         </Button>
-        <Button variant="contained" color="secondary" className="btn">
+        <Button
+          variant="contained"
+          color="secondary"
+          className="btn"
+          onClick={() => navigate("/register")}
+        >
           Register
         </Button>
       </div>

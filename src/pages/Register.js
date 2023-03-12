@@ -8,9 +8,10 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, GeoPoint } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, Button, Box, Paper, Typography } from "@mui/material";
 import registerImg from "../assets/img/register-page.jpg";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
+import logo from "../assets/img/logo.png";
 
 const Register = () => {
   const { setRedirected } = usePreferencesGlobalContext();
@@ -61,43 +62,67 @@ const Register = () => {
           justifyContent: "center",
         }}
       >
-        <form>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <TextField
-              sx={{ marginBottom: "1rem" }}
-              type="text"
-              name="email"
-              onChange={handleChange}
-              label="E-mail"
+        <Paper
+          elevation={5}
+          sx={{
+            borderRadius: "5px",
+            p: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "25vw",
+            m: "0 auto",
+          }}
+        >
+          <div style={{ width: "10vw" }}>
+            <img
+              src={logo}
+              width="100%"
+              alt="logo"
+              style={{ marginBottom: "2rem" }}
             />
-            <TextField
-              sx={{ marginBottom: "1rem" }}
-              type="text"
-              name="name"
-              onChange={handleChange}
-              label="Name"
-            />
-            <TextField
-              sx={{ marginBottom: "1rem" }}
-              type="password"
-              name="password"
-              onChange={handleChange}
-              label="Password"
-            />
-            <Button onClick={handleSubmit} variant="contained">
-              Register
-            </Button>
-          </Box>
-        </form>
-        <p>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
+          </div>
+          <form>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                sx={{ marginBottom: "1rem" }}
+                type="text"
+                name="email"
+                onChange={handleChange}
+                label="E-mail"
+              />
+              <TextField
+                sx={{ marginBottom: "1rem" }}
+                type="text"
+                name="name"
+                onChange={handleChange}
+                label="Name"
+              />
+              <TextField
+                sx={{ marginBottom: "1rem" }}
+                type="password"
+                name="password"
+                onChange={handleChange}
+                label="Password"
+              />
+              <Button onClick={handleSubmit} variant="contained">
+                Register
+              </Button>
+            </Box>
+          </form>
+          <Typography sx={{ textAlign: "center", mt: "1rem" }}>
+            Already have an account?
+            <Link to="/login">
+              <Typography color="secondary">Login</Typography>
+            </Link>
+          </Typography>
+        </Paper>
       </Box>
       <Box
         sx={{

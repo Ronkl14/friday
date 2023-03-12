@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { TextField, Button, Box, Paper, Typography } from "@mui/material";
 import loginImg from "../assets/img/login-page.jpg";
-import logo from "../assets/img/logo2.png";
+import logo from "../assets/img/logo.png";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
@@ -84,7 +84,7 @@ const Login = () => {
             m: "0 auto",
           }}
         >
-          <div style={{ width: "15vw" }}>
+          <div style={{ width: "10vw" }}>
             <img
               src={logo}
               width="100%"
