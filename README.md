@@ -32,7 +32,7 @@ The app reads the places and user preferences from the Firestore database.
 
 ## Credits
 
-The Friday app was developed by [your name] as a midterm project in the AppleSeeds Fullstack Developer Bootcamp. 
+The Friday app was developed by Ron Klik as a midterm project in the AppleSeeds Fullstack Developer Bootcamp. 
 
 ## License
 
