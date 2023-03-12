@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Friday App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Friday is a React application developed as a midterm project in the AppleSeeds Fullstack Developer Bootcamp. The app uses Firebase authentication to allow users to register and log in. After logging in, users can set their preferences for location, range, favorite types of hangouts (clubs, food, etc.), with whom they want to hang out (partner, friends, alone, etc.), and the price range. The app then generates a random hangout place that matches the user's preferences.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clone the repository using `git clone https://github.com/your-username/friday.git`
+2. Navigate to the project directory using `cd friday`
+3. Install the necessary dependencies using `npm install`
+4. Start the development server using `npm start`
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The following technologies were used in the development of this project:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ReactJS
+- React Router DOM
+- Firebase Authentication
+- Firestore Database
+- Material UI
+- Google Maps API
+- Styled Components
+- Combobox NPM Package
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+After installing the app and starting the development server, you can access the app by navigating to `http://localhost:3000` in your web browser. From there, you can register or log in using Firebase authentication. Once you are logged in, you will be taken to the preferences page, where you can set your location, range, favorite types of hangouts, and other preferences. After setting your preferences, you can click the "Find Hangout" button to generate a random hangout place that matches your preferences. You can also create new places, edit existing ones, and delete them.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app reads the places and user preferences from the Firestore database.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Credits
 
-### `npm run eject`
+The Friday app was developed by [your name] as a midterm project in the AppleSeeds Fullstack Developer Bootcamp. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the terms of the MIT license.
