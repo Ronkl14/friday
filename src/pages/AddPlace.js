@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
-import { doc, getDoc, setDoc, addDoc, collection } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import {
   FormControlLabel,
   Checkbox,
@@ -79,22 +79,6 @@ const AddPlace = () => {
 
   function saveLocation(e) {
     e.preventDefault();
-    // const locationRef = doc(db, "places", id);
-    // setDoc(
-    //   locationRef,
-    //   {
-    //     name: location.name,
-    //     address: location.address,
-    //     type: location.type,
-    //     with: location.with,
-    //     price: location.price,
-    //     geoPoint: {
-    //       latitude: location.geoPoint.latitude,
-    //       longitude: location.geoPoint.longitude,
-    //     },
-    //   },
-    //   { merge: true }
-    // );
     async function addPlace() {
       const docRef = await addDoc(collection(db, "places"), {
         name: location.name,

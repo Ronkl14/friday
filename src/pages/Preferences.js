@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AddressInput } from "../components";
 import { Checkbox, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
-import "../components/a.css";
+import "../styled/autocomplete.css";
 
 const Preferences = () => {
   const navigate = useNavigate();

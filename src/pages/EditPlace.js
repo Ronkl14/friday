@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { AddressInput } from "../components";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
+import "../styled/autocomplete.css";
 
 const EditPlace = () => {
   const navigate = useNavigate();

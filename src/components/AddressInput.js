@@ -12,7 +12,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { useState } from "react";
 import { usePreferencesGlobalContext } from "../context/PreferencesContext";
-import "./a.css";
+import "../styled/autocomplete.css";
 
 const AddressInput = ({ setAddress, passedAddress }) => {
   const [existingAddress, setExistingAddress] = useState(passedAddress);
