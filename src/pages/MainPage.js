@@ -136,7 +136,7 @@ const MainPage = () => {
         sx={{
           display: "flex",
           gap: "1rem",
-          width: "98vw",
+          width: "95vw",
           justifyContent: "center",
           m: "1rem",
         }}

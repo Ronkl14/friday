@@ -29,7 +29,7 @@ const Navbar = () => {
         borderBottom: "2px solid #865DFF",
         height: "5rem",
         p: "1rem",
-        width: "100vw",
+        width: "100%",
       }}
     >
       {/* <Typography>Hi, {userPreferences.name}</Typography> */}
@@ -49,6 +49,7 @@ const Navbar = () => {
           variant="outlined"
           sx={{ color: "white" }}
           onClick={() => navigate("/add")}
+          size="small"
         >
           Add location
         </Button>
@@ -56,6 +57,7 @@ const Navbar = () => {
           onClick={() => navigate("/location-list")}
           variant="outlined"
           sx={{ color: "white" }}
+          size="small"
         >
           All locations
         </Button>
@@ -64,6 +66,7 @@ const Navbar = () => {
           variant="outlined"
           color="secondary"
           sx={{ color: "white" }}
+          size="small"
         >
           Logout
         </Button>

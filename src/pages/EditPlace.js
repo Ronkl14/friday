@@ -34,9 +34,8 @@ const EditPlace = () => {
   }, []);
 
   useEffect(() => {
-    console.log(location);
     setAddress(location.address);
-  }, [location]);
+  }, [address]);
 
   useEffect(() => {
     setLocation((prevDetails) => ({

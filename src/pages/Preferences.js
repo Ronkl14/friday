@@ -29,6 +29,7 @@ const Preferences = () => {
   const [address, setAddress] = useState("");
   const [firstTimeSetup, setFirstTimeSetup] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [loader, setLoader] = useState(true);
 
   const auth = getAuth();
 
@@ -61,6 +62,8 @@ const Preferences = () => {
     ) {
       navigate("/main");
       setAfterLogin(false);
+    } else {
+      setLoader(false);
     }
   }, [isLoading]);
 
@@ -132,7 +135,9 @@ const Preferences = () => {
     }
   }
 
-  return (
+  return loader ? (
+    <div className="loader"></div>
+  ) : (
     <Box sx={{ p: "0 29rem" }}>
       <Paper sx={{ p: "0 1rem" }} elevation={5}>
         <form onSubmit={savePreferences}>

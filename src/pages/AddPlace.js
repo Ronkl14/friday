@@ -24,21 +24,10 @@ const AddPlace = () => {
     type: [],
     price: "",
     geoPoint: { latitude: 0, longitude: 0 },
+    photoUrl: "",
   });
   const [address, setAddress] = useState("");
   const { coordinates } = usePreferencesGlobalContext();
-
-  useEffect(() => {
-    console.log(location);
-    setAddress(location.address);
-  }, [location]);
-
-  useEffect(() => {
-    setLocation((prevDetails) => ({
-      ...prevDetails,
-      address: address,
-    }));
-  }, [address]);
 
   useEffect(() => {
     setLocation((prevDetails) => ({
@@ -87,6 +76,7 @@ const AddPlace = () => {
         type: location.type,
         with: location.with,
         price: location.price,
+        photoUrl: location.photoUrl,
         geoPoint: {
           latitude: location.geoPoint.latitude,
           longitude: location.geoPoint.longitude,
@@ -109,6 +99,17 @@ const AddPlace = () => {
               name="name"
               className="pref-input"
               value={location.name}
+              onChange={changeHandler}
+            />
+          </div>
+          <div>
+            <label htmlFor="photo">Photo Url: </label>
+            <input
+              type="text"
+              id="photo"
+              name="photoUrl"
+              className="pref-input"
+              value={location.photoUrl}
               onChange={changeHandler}
             />
           </div>
