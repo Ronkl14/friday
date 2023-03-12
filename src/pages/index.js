@@ -7,6 +7,7 @@ import ErrorPage from "./ErrorPage";
 import LandingPage from "./LandingPage";
 import LocationList from "./LocationList";
 import EditPlace from "./EditPlace";
+import AddPlace from "./AddPlace";
 
 export {
   Login,
@@ -18,4 +19,5 @@ export {
   LandingPage,
   LocationList,
   EditPlace,
+  AddPlace,
 };

@@ -8,6 +8,7 @@ import {
   LandingPage,
   LocationList,
   EditPlace,
+  AddPlace,
 } from "./pages";
 import { MainNavigation } from "./components";
 import {
@@ -74,6 +75,10 @@ function App() {
         {
           path: "/edit/:id",
           element: user ? <EditPlace /> : <Navigate to="/login" />,
+        },
+        {
+          path: "/add",
+          element: user ? <AddPlace /> : <Navigate to="/login" />,
         },
         { path: "*", element: <ErrorPage /> },
       ],

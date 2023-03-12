@@ -45,7 +45,11 @@ const Navbar = () => {
         <img src={navLogo} height="100%" />
       </button>
       <Box sx={{ display: "flex", gap: "1rem" }}>
-        <Button variant="outlined" sx={{ color: "white" }}>
+        <Button
+          variant="outlined"
+          sx={{ color: "white" }}
+          onClick={() => navigate("/add")}
+        >
           Add location
         </Button>
         <Button
